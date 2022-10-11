@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="fr"   ng-app="message">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Mailbox</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="script.js" type="module"></script>
+  
+ 
+
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.min.js"> </script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> 
+    <link href="inbox.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+   
+<div class="container bootstrap snippets bootdeys">
+    
+<div class="row">
+    
+    <div class="col-lg-12">
+        
+        <div class="box">
+            
+            <!--mail inbox start-->
+           
+            <div class="mail-box">
+               
+                <aside class="sm-side">
+                    
+                    <div class="user-head">
+                        <a href="javascript:;" class="inbox-avatar">
+                         <!--   <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="img-responsive">-->
+                        </a>
+                        <div class="user-name">
+                            <h5><a href="#" ><input style="border: none; background: transparent; color: #fff;" id="myName" value="" disabled="disabled"/></a></h5>
+                            <span><a href="#" ><input style="border: none; background: transparent; color: #fff;" id="myEmail" value="" disabled="disabled"/></a></span>
+                        </div>
+                        <a href="javascript:;" class="mail-dropdown pull-right">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                    </div>
+                    <div class="inbox-body">
+                        <a class="btn btn-compose" data-toggle="modal" href="#myModal" data-original-title="" title="">
+                            Compose
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title">Compose</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal" role="form" > 
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">To</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="inputEmail" placeholder="" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="inputCc" placeholder="">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Subject</label>
+                                                <div class="col-lg-10">
+                                                    <input type="text" class="form-control" id="inputSubject" placeholder="" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">Message</label>
+                                                <div class="col-lg-10">
+                                                    <textarea name="" id="inputMessage" class="form-control" cols="30" rows="10" required></textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <input type="file" id="attachment" /></br>
+                                                    <button id="btnSend" class="btn btn-send" data-original-title="" title="">Send</button>
+                                                   
+                                                </div>
+                                            </div>
+                                       </form> 
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal-dialog -->
+                        </div><!-- /.modal -->
+                    </div>
+
+                    <ul id="menu" class="inbox-nav inbox-divider">
+                        <li class="active">
+                            <a id="inboxmails" href="#"><i class="fa fa-inbox"></i> Inbox <span id="numberofmails" class="label label-danger pull-right"></span></a>
+                        </li>
+                        <li>
+                            <a id="sentmails" href="#"><i class="fa fa-envelope-o"></i> Sent Mail</a>
+                        </li>
+                        <li>
+                            <a id="importantFolder"><i class="fa fa-bookmark-o"></i> Important</a>
+                        </li>
+                        <li>
+                            <a id="draftFolder"><i class=" fa fa-external-link"></i> Drafts <span class="label label-info pull-right">30</span></a>
+                        </li>
+                        <li>
+                            <a id="trashFolder"><i class=" fa fa-trash-o"></i> Trash</a>
+                        </li> 
+                    </ul>
+                   
+                    
+                   
+                </aside>
+                <aside class="lg-side">
+                <div class="inbox-head">
+                    <h3>Inbox</h3>
+                    <form class="pull-right position" action="#">
+                        <div class="input-append">
+                            <input type="text" placeholder="Search Mail" class="sr-input">
+                            <button type="button" class="btn sr-btn" data-original-title="" title=""><i class="fa fa-search"></i></button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="inbox-body">
+                <div class="mail-option">
+                
+                    
+                    <div class="btn-group hidden-phone">
+                       
+                    <button style="display: none;" id="btnDelete" type="button" class="btn btn-light">Delete</button>
+
+                    </div>
+                   <div style="float: right;">
+                    <div id="pagination-wrapper"></div>
+                    </div> 
+                </div>
+              
+                <table class="table table-inbox table-hover" id="tablemail" >
+                    
+                    <thead>
+                        <tr class="unread">
+                            <td class="inbox-small-cells">
+                                
+                            </td>
+                            <td class="inbox-small-cells"><i class="fa fa-star"></i></td>
+                            <td class="view-message  dont-show">From</td>
+                            <td class="view-message ">Subject</td>
+                            <td class="view-message  inbox-small-cells"><i class="fa fa-paperclip"></i></td>
+                            <td class="view-message">Date</td>
+                        </tr>
+                    </thead>
+                <tbody>
+                  
+
+             <!-- Code jQuery -->
+                </tbody>
+                </table>
+                <h3 id="emptyFolder"></h3>
+                    <button style="display: none;" id="backkBtn">back</button>
+                    
+
+                    <p id="sentBody"></p>
+                
+                
+                <div id="loadingImage"><img src="mail.gif" alt="waiting..." style="width: 700px; height:500px;"></div> 
+                <div class="modal fade" id="reading" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title">Read Mail</h4>
+                                <div style="display: flex;">
+                                From : <div id="bodyFrom" class="modal-title" style="display: flex;" ></div>
+                                </div> 
+                                <div style="display: flex;">
+                                Reçu en : <div id="mailDate" class="modal-title" style="display: flex;" ></div>
+                                
+                            </div>
+                            <div style="float: right;" class="icons">
+                                <a id="replyToMsg" href="#" class="icon">
+
+                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" > <path d="M10.3623 15.529L8.94804 16.9432L3.99829 11.9934L8.94804 7.0437L10.3623 8.45791L7.86379 10.9564H16.0018C18.2109 10.9564 20.0018 12.7472 20.0018 14.9564V16.9564H18.0018V14.9564C18.0018 13.8518 17.1063 12.9564 16.0018 12.9564H7.78965L10.3623 15.529Z" fill="currentColor" /> </svg>
+                                </a>
+                                <a id="deleteOnViewMail" href="#" class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash text-muted" data-toggle="tooltip" title="" data-original-title="Delete"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                                </a>
+                                
+                            </div>
+                                
+                                
+                              
+                                <div class="email-head-sender d-flex align-items-center justify-content-between flex-wrap">
+                                    <div class="d-flex align-items-center">
+                                      
+                                        <div class="sender d-flex align-items-center">
+                                            <input style="border: none; background: transparent; color: #000;" id="myEmail" value="" disabled="disabled"/>
+         
+                                           </div>
+                                    </div>
+                                
+                        
+                              </div>
+                            </div>
+                            <div class="modal-body">
+                            <div class="email-body">
+                              <p id="mailBody"></p>
+                              <br>
+                              
+                            </div>
+                           <div style="display: none;" id="replyDiv">
+                            <form class="form-horizontal" role="form" method="POST">
+                              <div class="form-group">
+                                    <label class="col-lg-2 control-label">To</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="replyTo" placeholder="" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Cc / Bcc</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="replyCc" placeholder="">
+                                    </div>
+                                </div>
+                             <!--   <div class="form-group">
+                                    <label class="col-lg-2 control-label">Subject</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" id="replySubject" placeholder="" required>
+                                    </div>
+                                </div> -->
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Message</label>
+                                    <div class="col-lg-10">
+                                        <textarea name="" id="replyMessage" class="form-control" cols="30" rows="10" required></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-lg-offset-2 col-lg-10">
+                                        <input type="file" id="datafile" /></br>
+                                        <button type="submit" id="replyBtnSend" class="btn btn-send" data-original-title="" title="">Send</button>
+                                       
+                                    </div>
+                                </div>
+                            </form>
+                           </div>
+                          </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </aside>
+</div>
+        <!--mail inbox end-->
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+<!-- jQuery library -->
+
+</html>
